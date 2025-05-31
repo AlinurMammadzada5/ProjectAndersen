@@ -35,7 +35,7 @@ public class DB {
 
       void deleteSpace() {
         System.out.print("Enter space number: ");
-        int choice = scannerGet.scanner.nextInt();
+        int choice = ScannerGet.scanner.nextInt();
         if(choice>=0 && choice<=spaces.size()) {
             spaces.remove(choice - 1);
             books.remove(choice - 1);

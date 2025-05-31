@@ -1,6 +1,6 @@
 
 
-public class adminLog {
+public class AdminLog {
 
 DB db =DB.getInstance();
     void adminLogin(){
@@ -9,7 +9,7 @@ DB db =DB.getInstance();
         while (choice!=4) {
             System.out.println("Options : 1 - Add a new Coworking Space  /  2 - Remove a Coworking Space  /  3 - View Spaces  /   4 - Exit");
             System.out.print("Your Choice :  ");
-            choice = scannerGet.scanner.nextInt();
+            choice = ScannerGet.scanner.nextInt();
             getAnswer(choice);
         }
 

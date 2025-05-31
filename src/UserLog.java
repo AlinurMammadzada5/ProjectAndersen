@@ -1,4 +1,4 @@
-public class userLog {
+public class UserLog {
     String username;
     DB db =DB.getInstance();
 
@@ -6,15 +6,15 @@ public class userLog {
 
     void userLogin(){
         System.out.print("Enter Username: ");
-        scannerGet.scanner.nextLine();
-        username = scannerGet.scanner.nextLine();
+        ScannerGet.scanner.nextLine();
+        username = ScannerGet.scanner.nextLine();
         System.out.println("User Login Successful...");
         int choice=0;
 
         while (choice!=5) {
             System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a Reservation  /  3 - View My Reservation  /   4 - Cancel Reservation  /  5 - Exit");
             System.out.print("Your Choice :  ");
-            choice = scannerGet.scanner.nextInt();
+            choice = ScannerGet.scanner.nextInt();
             getAnswer(choice);
         }
     }
@@ -26,7 +26,7 @@ public class userLog {
         }
         else if (choice == 2) {
             System.out.print("Enter the Table ID : ");
-            int reserveChoice = scannerGet.scanner.nextInt();
+            int reserveChoice = ScannerGet.scanner.nextInt();
             db.reserveSpace(reserveChoice,username);
         }
         else if (choice == 3) {
@@ -34,7 +34,7 @@ public class userLog {
         }
         else if (choice == 4) {
             System.out.println("Enter the Canceling Table ID : ");
-            int cancelChoice = scannerGet.scanner.nextInt();
+            int cancelChoice = ScannerGet.scanner.nextInt();
             db.cancelReservedSpace(username,cancelChoice);
         }
         else {
