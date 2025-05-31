@@ -18,15 +18,16 @@ DB db =DB.getInstance();
     }
     public void getAnswer(int choice) {
 
-        if (choice == 1) {
-            db.addSpace();
-        } else if (choice == 2) {
-            db.deleteSpace();
-        } else if (choice == 3) {
-            db.printTable();
-        } else {
-            System.out.println("Invalid Choice");
-
+        switch (choice) {
+            case 1:db.addSpace();
+            break;
+            case 2:db.deleteSpace();
+            break;
+            case 3:db.printTable();
+            break;
+            case 4:break;
+            default:System.out.println("Invalid Choice");
+            break;
         }
         }
     }

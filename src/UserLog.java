@@ -21,24 +21,32 @@ public class UserLog {
 
     public void getAnswer (int choice) {
 
-        if (choice == 1) {
-           db.printAvailableTables();
-        }
-        else if (choice == 2) {
-            System.out.print("Enter the Table ID : ");
-            int reserveChoice = ScannerGet.scanner.nextInt();
-            db.reserveSpace(reserveChoice,username);
-        }
-        else if (choice == 3) {
-            db.myReservedSpace(username);
-        }
-        else if (choice == 4) {
-            System.out.println("Enter the Canceling Table ID : ");
-            int cancelChoice = ScannerGet.scanner.nextInt();
-            db.cancelReservedSpace(username,cancelChoice);
-        }
-        else {
-            System.out.println("Invalid Choice");
+        switch (choice) {
+            case 1:{
+                db.printAvailableTables();
+                break;
+            }
+            case 2:{
+                System.out.print("Enter the Table ID : ");
+                int reserveChoice = ScannerGet.scanner.nextInt();
+                db.reserveSpace(reserveChoice,username);
+                break;
+            }
+            case 3:{
+                db.myReservedSpace(username);
+                break;
+            }
+            case 4:{
+                System.out.println("Enter the Canceling Table ID : ");
+                int cancelChoice = ScannerGet.scanner.nextInt();
+                db.cancelReservedSpace(username,cancelChoice);
+                break;
+            }
+            case 5:break;
+            default:{
+                System.out.println("Invalid Option");
+                break;
+            }
         }
         }
     }

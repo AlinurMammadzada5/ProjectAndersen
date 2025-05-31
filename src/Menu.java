@@ -14,18 +14,25 @@ public class Menu {
     }
     void menuAnswer(int choice){
 
-        if(choice == 1){
-            AdminLog admin = new AdminLog();
-            admin.adminLogin();
-        }
-        else if(choice == 2){
-            UserLog user = new UserLog();
-            user.userLogin();
-        }
-        else if(choice == 3){
-            System.exit(0);
-        } else {
-            System.out.println("Invalid Choice");
+        switch (choice) {
+            case 1: {
+                AdminLog admin = new AdminLog();
+                admin.adminLogin();
+                break;
+            }
+            case 2: {
+                UserLog user = new UserLog();
+                user.userLogin();
+                break;
+            }
+            case 3: {
+                System.exit(0);
+                break;
+            }
+            default: {
+                System.out.println("Invalid Choice");
+                break;
+            }
         }
     }
 }
