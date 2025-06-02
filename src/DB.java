@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 
 public class DB {
     private static DB instance;
@@ -12,8 +12,7 @@ public class DB {
       private final List<Boolean> books ;
       private final List<String> bookUsernames ;
       private int spaceCount;
-      private    FileWriter spacesText;
-private final String FILE_NAME = "spaces.txt";
+      private final String FILE_NAME = "spaces.txt";
 
 
       private DB() {

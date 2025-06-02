@@ -17,7 +17,7 @@ public class Menu {
 
         }
     }
-    void menuAnswer(int choice) throws EmptyNameException, NotExistedTableException {
+    void menuAnswer(int choice)  {
 
         switch (choice) {
             case 1: {

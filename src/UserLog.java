@@ -1,4 +1,4 @@
-import java.util.Objects;
+
 
 public class UserLog {
     String username;
@@ -26,7 +26,7 @@ public class UserLog {
         }
     }
 
-    public void getAnswer (int choice) throws NotExistedTableException {
+    public void getAnswer (int choice) {
 
         switch (choice) {
             case 1:{
