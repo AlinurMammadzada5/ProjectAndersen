@@ -1,0 +1,8 @@
+Table 1,false,-
+Table 2,false,-
+Table 3,true,Alinur
+Table 4,false,-
+Table 5,false,-
+Table 6,true,Alinur
+Table 7,false,-
+Table 8,false,-
