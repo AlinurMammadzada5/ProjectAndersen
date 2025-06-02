@@ -1,17 +1,24 @@
+import java.util.Objects;
+
 public class UserLog {
     String username;
     DB db =DB.getInstance();
 
 
 
-    void userLogin(){
-        System.out.print("Enter Username: ");
-        ScannerGet.scanner.nextLine();
-        username = ScannerGet.scanner.nextLine();
-        System.out.println("User Login Successful...");
-        int choice=0;
+    void userLogin() throws EmptyNameException, NotExistedTableException {
 
-        while (choice!=5) {
+            System.out.print("Enter Username: ");
+            ScannerGet.scanner.nextLine();
+            username = ScannerGet.scanner.nextLine();
+            if(username.isEmpty()){
+                throw new EmptyNameException("Empty Username is not Accepted");
+            } else {
+                System.out.println("User Login Successful...");
+            }
+
+            int choice=0;
+            while (choice!=5) {
             System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a Reservation  /  3 - View My Reservation  /   4 - Cancel Reservation  /  5 - Exit");
             System.out.print("Your Choice :  ");
             choice = ScannerGet.scanner.nextInt();
@@ -19,7 +26,7 @@ public class UserLog {
         }
     }
 
-    public void getAnswer (int choice) {
+    public void getAnswer (int choice) throws NotExistedTableException {
 
         switch (choice) {
             case 1:{
@@ -29,7 +36,12 @@ public class UserLog {
             case 2:{
                 System.out.print("Enter the Table ID : ");
                 int reserveChoice = ScannerGet.scanner.nextInt();
-                db.reserveSpace(reserveChoice,username);
+                  try {
+                      db.reserveSpace(reserveChoice,username);
+                  } catch (NotExistedTableException e) {
+                      System.out.println(e.getMessage());
+                  }
+
                 break;
             }
             case 3:{
