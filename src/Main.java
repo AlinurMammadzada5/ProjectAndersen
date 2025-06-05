@@ -1,10 +1,25 @@
-
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class Main {
     public static void main(String[] args)  {
 
-        Menu appMenu = new Menu();
-        appMenu.showMenu();
+
+        CustomClassLoader messageClassLoader = new CustomClassLoader();
+
+        try {
+
+            Class<?> loadedClass = messageClassLoader.loadClass("Menu");
+
+            Object instance = loadedClass.getDeclaredConstructor().newInstance();
+            Method printMessageMethod = loadedClass.getMethod("showMenu");
+            printMessageMethod.invoke(instance);
+
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+                 InvocationTargetException e) {
+            System.err.println("Can't load message class with reason + " + e.getMessage());
+        }
+
 
     }
 }

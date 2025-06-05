@@ -2,7 +2,7 @@ import java.util.InputMismatchException;
 
 public class Menu {
 
-    void showMenu() {
+    public void showMenu() {
         int choice=0;
         while(choice!=4) {
             System.out.println("Welcome To Coworking Space Reservation Application" +
