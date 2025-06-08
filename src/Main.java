@@ -10,15 +10,18 @@ public class Main {
         try {
 
             Class<?> loadedClass = messageClassLoader.loadClass("Menu");
+            System.out.println(loadedClass.getClassLoader());
 
             Object instance = loadedClass.getDeclaredConstructor().newInstance();
             Method printMessageMethod = loadedClass.getMethod("showMenu");
             printMessageMethod.invoke(instance);
 
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
+       }
+        catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {
-            System.err.println("Can't load message class with reason + " + e.getMessage());
+            System.out.println(e.getMessage());
         }
+
 
 
     }
