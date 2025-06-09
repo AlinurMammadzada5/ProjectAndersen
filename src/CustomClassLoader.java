@@ -12,7 +12,7 @@ public class CustomClassLoader extends ClassLoader {
                 try {
                     loadedClass = super.loadClass(name,false);
                 } catch (ClassNotFoundException e) {
-                    System.out.println(e.getMessage());
+                  loadedClass = load(name);
                 }
             }
 
