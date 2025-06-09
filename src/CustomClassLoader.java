@@ -10,9 +10,9 @@ public class CustomClassLoader extends ClassLoader {
 
         if (loadedClass == null) {
                 try {
-                    loadedClass = load(name);
+                    loadedClass = super.loadClass(name,false);
                 } catch (ClassNotFoundException e) {
-                    loadedClass = super.loadClass(name, false);
+                    System.out.println(e.getMessage());
                 }
             }
 
