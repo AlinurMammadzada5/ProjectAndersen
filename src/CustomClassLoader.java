@@ -8,21 +8,20 @@ public class CustomClassLoader extends ClassLoader {
     protected Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
         Class<?> loadedClass = findLoadedClass(name);
 
+        if (loadedClass == null) {
+                try {
+                    loadedClass = load(name);
+                } catch (ClassNotFoundException e) {
+                    loadedClass = super.loadClass(name, false);
+                }
+            }
 
-        if (loadedClass != null) return loadedClass;
-        if (!name.equals("Menu") && !name.equals("ScannerGet") && !name.equals("AdminLog") && !name.equals("UserLog") && !name.equals("DB")) {
-            return super.loadClass(name, resolve);
+        if (resolve) {
+            resolveClass(loadedClass);
         }
 
 
-        try {
-            return load(name);
-        } catch ( ClassNotFoundException e) {
-            System.out.println("Class not found: " + name);
-            throw e;
-        }
-
-
+       return loadedClass;
     }
 
 
