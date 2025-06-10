@@ -36,6 +36,7 @@ public class Menu {
 
             }
             case 3: {
+                DB.getInstance().spaceSaver();
                 System.exit(0);
                 break;
             }
