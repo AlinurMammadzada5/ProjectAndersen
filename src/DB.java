@@ -9,7 +9,7 @@ public class DB {
     private static DB instance;
 
 
-      private Map<String,Integer> userReservationCount = new HashMap<>();
+      private final Map<String,Integer> userReservationCount = new HashMap<>();
 //      private final List<String> spaces ;
 //      private final List<Boolean> books ;
 //      private final List<String> bookUsernames ;
