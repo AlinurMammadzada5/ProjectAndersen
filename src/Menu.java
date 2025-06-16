@@ -1,8 +1,10 @@
 import java.util.InputMismatchException;
-
+//interface MenuShow{
+//    void showMenu();
+//}
 public class Menu {
 
-    void showMenu() {
+     public void showMenu() {
         int choice=0;
         while(choice!=4) {
             System.out.println("Welcome To Coworking Space Reservation Application" +
@@ -17,6 +19,7 @@ public class Menu {
 
         }
     }
+
     void menuAnswer(int choice)  {
 
         switch (choice) {

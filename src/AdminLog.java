@@ -25,7 +25,7 @@ DB db =DB.getInstance();
             break;
             case 3:db.printTable();
             break;
-            case 4: break;
+            case 4: DB.getInstance().spaceSaver(); break;
             default:System.out.println("Invalid Choice");
             break;
         }

@@ -3,7 +3,7 @@ public class Reservation<T> {
     private final boolean isBooked;
     private final T username;
 
-    public Reservation(T spaceName, boolean isBooked, T username) {
+    public Reservation(T spaceName, boolean isBooked,T username) {
         this.spaceName = spaceName;
         this.isBooked = isBooked;
         this.username = username;
