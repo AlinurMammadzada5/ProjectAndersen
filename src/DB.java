@@ -1,8 +1,6 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 
 public class DB {
@@ -10,11 +8,7 @@ public class DB {
 
 
       private final Map<String,Integer> userReservationCount = new HashMap<>();
-//      private final List<String> spaces ;
-//      private final List<Boolean> books ;
-//      private final List<String> bookUsernames ;
       private final List<Reservation<String>> reservations ;
-
       private int spaceCount;
       private final String FILE_NAME = "spaces.txt";
 
@@ -30,16 +24,12 @@ public class DB {
 
      }
 
-
-
      public static DB getInstance() {
         if (instance == null) {
             instance = new DB();
         }
          return instance;
      }
-
-
 
 
      void spaceSaver(){
@@ -61,10 +51,7 @@ public class DB {
                     String currSpace = currLine.split(",")[0];
                     String currBook = currLine.split(",")[1];
                     String currBookUsername = currLine.split(",")[2];
-
-
                     if(currBook.equals("false")){
-
                         reservations.add(new Reservation<>(currSpace,false,currBookUsername));
                     } else if(currBook.equals("true")){
                         reservations.add(new Reservation<>(currSpace,true,currBookUsername));
@@ -73,14 +60,14 @@ public class DB {
                 }
 
           } catch (IOException e){
-              System.out.println("Error to read file");
+              System.out.println("Error to read file. New file will be created if it is not existed");
           }
      }
 
 
       void addSpace() {
 
-          reservations.add(new Reservation<>("Table " + spaceCount,false, "-"));
+          reservations.add(new Reservation<>("Table " + spaceCount,false, ""));
           System.out.println("New space added : Table " + spaceCount);
           spaceCount++;
 
@@ -105,66 +92,63 @@ void organizeTable() {
           for (int i = 0; i < reservations.size(); i++) {
         reservations.get(i).setSpaceName("Table"+i);
     }
-
 }
 
 
 
     void printTable() {
-        for (int i = 0; i < reservations.size(); i++) {
-            if (!reservations.get(i).getBooked()) {
-                System.out.println("Table " + (i + 1) + " : booked :  " + reservations.get(i).getBooked());
-            }else{
-                System.out.println("Table " + (i + 1) + " : booked :  " + reservations.get(i).getBooked() + " Username : " + reservations.get(i).getUsername());
-            }
-        }
+         reservations.stream().map(r ->r.getSpaceName()+" "+r.getBooked()+"  "+r.getUsername()).forEach(System.out::println);
     }
 
 
 
        void printAvailableTables() {
-        for (int i = 0; i < reservations.size(); i++) {
-            if (!reservations.get(i).getBooked()) {
-                System.out.println("Table " + (i+1) + " is  available");
-            }
-        }
+           reservations.stream().map(r -> !r.getBooked() ? r.getSpaceName()+" : available " : r.getSpaceName()+" : not available").forEach(System.out::println);
     }
 
       void reserveSpace(int choice, String username) throws NotExistedTableException {
-          int currReservationCount = userReservationCount.getOrDefault(username,0);
-          if(choice<=0 || choice>=reservations.size()) {
-              throw new NotExistedTableException("There is no such space");
-          } else{
-              if(!reservations.get(choice - 1).getBooked()) {
-                 if(currReservationCount<2) {
-                     System.out.println("Table " + (choice) + " is  reserved");
+try {
 
-                     userReservationCount.put(username,currReservationCount+1);
 
-                     reservations.set(choice - 1, new Reservation<>(reservations.get(choice - 1).getSpaceName(),true, username ));
-                 } else {
-                     System.out.println("You already have reserved 2 space. You need to delete a reserved space first");
-                 }
+    if (!reservations.get(choice - 1).getBooked()) {
+        countReservations(username);
+        int currReservationCount = userReservationCount.getOrDefault(username, 0);
+        if (currReservationCount < 2) {
+            System.out.println("Table " + (choice) + " is  reserved");
+            userReservationCount.put(username, currReservationCount + 1);
+            reservations.set(choice - 1, new Reservation<>(reservations.get(choice - 1).getSpaceName(), true, username));
+        } else {
+            System.out.println("You already have reserved 2 space. You need to delete a reserved space first");
+        }
 
-            } else {
-                System.out.println("This book is already reserved by someone else");
+    } else {
+        System.out.println("This book is already reserved by someone else");
+    }
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Not That Amount of Space is Available in Our Space App");
+}
+    }
+    void countReservations(String username) {
+          int reserveCounter=0;
+        for (Reservation<String> reservation : reservations) {
+            if (reservation.getUsername().equals(username)) {
+                reserveCounter++;
             }
-          }
+            userReservationCount.put(username,reserveCounter);
+        }
     }
 
       void myReservedSpace(String username) {
-          for (int i = 0; i < reservations.size(); i++) {
-              Reservation<String> r = reservations.get(i);
-              if (r.getUsername().equals(username)) {
-                  System.out.println(r.getSpaceName() + " is reserved for " + username);
-              }
-          }
+       reservations.forEach(reservation -> {
+           if(reservation.getUsername().equals(username)) {
+               System.out.println(reservation.getSpaceName() + " is reserved by you");
+           }
+       });
     }
 
 
       void cancelReservedSpace(String username, int choice) {
-          int currReservationCount = userReservationCount.getOrDefault(username, 0);
-
+           int currReservationCount = Optional.ofNullable(userReservationCount.get(username)).orElse(0);
           if (currReservationCount > 0) {
               if (choice <= 0 || choice > reservations.size()) {
                   System.out.println("Invalid table number.");
@@ -173,7 +157,7 @@ void organizeTable() {
 
               Reservation<String> r = reservations.get(choice - 1);
               if (r.getUsername().equals(username)) {
-                  reservations.set(choice - 1, new Reservation<>(r.getSpaceName(),false,"-" ));
+                  reservations.set(choice - 1, new Reservation<>(r.getSpaceName(),false,"" ));
 
                   int curr = userReservationCount.getOrDefault(username, 0);
                   userReservationCount.put(username, curr - 1);

@@ -2,22 +2,34 @@
 
 public class UserLog {
     String username;
+    Boolean userLogged;
     DB db =DB.getInstance();
 
 
 
     void userLogin() throws EmptyNameException, NotExistedTableException {
+            userLogged = false;
+        while (!userLogged) {
+            try {
+                System.out.print("Enter Username: ");
+                username = ScannerGet.scanner.nextLine();
 
-            System.out.print("Enter Username: ");
-            ScannerGet.scanner.nextLine();
-            username = ScannerGet.scanner.nextLine();
-            if(username.isEmpty()){
-                throw new EmptyNameException("Empty Username is not Accepted");
-            } else {
+                if (username.isEmpty()) {
+                    throw new EmptyNameException("Empty Username is not Accepted");
+
+                }
                 System.out.println("User Login Successful...");
+                userLogged = true;
+
+            } catch (EmptyNameException e) {
+                System.out.println("Enter Username to Proceed ");
             }
 
-            int choice=0;
+}
+
+
+
+        int choice=0;
             while (choice!=5) {
             System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a Reservation  /  3 - View My Reservation  /   4 - Cancel Reservation  /  5 - Exit");
             System.out.print("Your Choice :  ");
@@ -54,7 +66,7 @@ public class UserLog {
                 db.cancelReservedSpace(username,cancelChoice);
                 break;
             }
-            case 5:break;
+            case 5: DB.getInstance().spaceSaver();break;
             default:{
                 System.out.println("Invalid Option");
                 break;
