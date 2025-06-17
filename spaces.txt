@@ -1,5 +1,13 @@
 Table 1,true,Alinur
 Table 2,true,Alinur
-Table 3,false,
-Table 4,false,
-Table 5,false,
+Table 3,false,-
+Table 4,false,-
+Table 5,false,-
+Table 6,false,-
+Table 7,false,-
+Table 8,false,-
+Table 9,false,-
+Table 10,false,-
+Table 11,false,-
+Table 12,false,-
+Table 13,false,-
