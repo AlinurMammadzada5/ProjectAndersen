@@ -45,33 +45,37 @@ public class DB {
      }
 
      void readFile(){
-          try(BufferedReader spaceReader = new BufferedReader(new FileReader("spaces.txt"))){
-                String currLine;
-                while ((currLine = spaceReader.readLine()) != null) {
-                    String currSpace = currLine.split(",")[0];
-                    String currBook = currLine.split(",")[1];
-                    String currBookUsername = currLine.split(",")[2];
-                    if(currBook.equals("false")){
-                        reservations.add(new Reservation<>(currSpace,false,currBookUsername));
-                    } else if(currBook.equals("true")){
-                        reservations.add(new Reservation<>(currSpace,true,currBookUsername));
-                    }
-                    spaceCount++;
-                }
+         try(BufferedReader spaceReader = new BufferedReader(new FileReader("spaces.txt"))){
+             String currLine;
+             while ((currLine = spaceReader.readLine()) != null) {
+                 String currSpace = currLine.split(",")[0];
+                 String currBook = currLine.split(",")[1];
+                 String currBookUsername = currLine.split(",")[2];
 
-          } catch (IOException e){
-              System.out.println("Error to read file. New file will be created if it is not existed");
-          }
+
+                 if(currBook.equals("false")){
+
+                     reservations.add(new Reservation<>(currSpace,false,currBookUsername));
+                 } else if(currBook.equals("true")){
+                     reservations.add(new Reservation<>(currSpace,true,currBookUsername));
+                 }
+                 spaceCount++;
+             }
+
+         } catch (IOException e){
+             System.out.println("Error to read file");
+         }
      }
 
 
       void addSpace() {
 
-          reservations.add(new Reservation<>("Table " + spaceCount,false, ""));
+          reservations.add(new Reservation<>("Table " + spaceCount,false, "-"));
           System.out.println("New space added : Table " + spaceCount);
           spaceCount++;
 
-    }
+
+      }
 
       void deleteSpace() {
         System.out.print("Enter space number: ");
@@ -98,7 +102,9 @@ void organizeTable() {
 
     void printTable() {
          reservations.stream().map(r ->r.getSpaceName()+" "+r.getBooked()+"  "+r.getUsername()).forEach(System.out::println);
-    }
+
+
+      }
 
 
 
