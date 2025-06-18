@@ -1,3 +1,5 @@
+package com.app;
+
 public class Reservation<T> {
     private final T spaceName;
     private final boolean isBooked;

@@ -1,3 +1,5 @@
+package com.app;
+
 import java.io.*;
 import java.util.*;
 
@@ -167,7 +169,7 @@ try {
 
                   int curr = userReservationCount.getOrDefault(username, 0);
                   userReservationCount.put(username, curr - 1);
-                  System.out.println("Reservation for " + r.getSpaceName() + " cancelled.");
+                  System.out.println("ApplicationStarterPack.Reservation for " + r.getSpaceName() + " cancelled.");
               } else {
                   System.out.println("You don’t own this reservation.");
               }

@@ -1,3 +1,5 @@
+package com.app;
+
 import java.util.InputMismatchException;
 //interface MenuShow{
 //    void showMenu();
@@ -7,7 +9,7 @@ public class Menu {
      public void showMenu() {
         int choice=0;
         while(choice!=4) {
-            System.out.println("Welcome To Coworking Space Reservation Application" +
+            System.out.println("Welcome To Coworking Space ApplicationStarterPack.Reservation Application" +
                     "\n" + "Options: 1 - Admin Login  /  2 - User Login  /  3 - Exit");
             System.out.print("Your Choice :  ");
             try {

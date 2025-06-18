@@ -1,4 +1,4 @@
-
+package com.app;
 
 public class AdminLog {
 
