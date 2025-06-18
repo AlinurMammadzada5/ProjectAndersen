@@ -1,4 +1,4 @@
-
+package com.app;
 
 public class UserLog {
     String username;
@@ -31,7 +31,7 @@ public class UserLog {
 
         int choice=0;
             while (choice!=5) {
-            System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a Reservation  /  3 - View My Reservation  /   4 - Cancel Reservation  /  5 - Exit");
+            System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a ApplicationStarterPack.Reservation  /  3 - View My ApplicationStarterPack.Reservation  /   4 - Cancel ApplicationStarterPack.Reservation  /  5 - Exit");
             System.out.print("Your Choice :  ");
             choice = ScannerGet.scanner.nextInt();
             getAnswer(choice);

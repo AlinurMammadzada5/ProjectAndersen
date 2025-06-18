@@ -1,3 +1,5 @@
+package com.app;
+
 import java.util.Scanner;
 
 public class ScannerGet {
