@@ -15,6 +15,15 @@ public class DB {
       private final String FILE_NAME = "spaces.txt";
 
 
+      public int getSpaceCount(){
+          return spaceCount;
+      }
+
+
+      public List<Reservation<String>> getReservations(){
+          return new ArrayList<>(reservations);
+      }
+
       private DB() {
         reservations = new ArrayList<>();
          this.spaceCount=1;
@@ -69,15 +78,12 @@ public class DB {
          }
      }
 
-
-      void addSpace() {
+     void addSpace() {
 
           reservations.add(new Reservation<>("Table " + spaceCount,false, "-"));
           System.out.println("New space added : Table " + spaceCount);
           spaceCount++;
-
-
-      }
+ }
 
       void deleteSpace() {
         System.out.print("Enter space number: ");
@@ -169,7 +175,7 @@ try {
 
                   int curr = userReservationCount.getOrDefault(username, 0);
                   userReservationCount.put(username, curr - 1);
-                  System.out.println("ApplicationStarterPack.Reservation for " + r.getSpaceName() + " cancelled.");
+                  System.out.println("Reservation for " + r.getSpaceName() + " cancelled.");
               } else {
                   System.out.println("You don’t own this reservation.");
               }
