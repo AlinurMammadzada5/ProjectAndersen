@@ -9,11 +9,13 @@ public class Reservation<T> {
         this.spaceName = spaceName;
         this.isBooked = isBooked;
         this.username = username;
+
     }
 
     public T getSpaceName() { return spaceName; }
     public boolean getBooked() { return isBooked; }
     public T getUsername() { return username; }
+
 
     public T setSpaceName(T spaceName) {
         return this.spaceName;
