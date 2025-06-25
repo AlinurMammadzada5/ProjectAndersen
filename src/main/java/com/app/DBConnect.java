@@ -22,8 +22,19 @@ public class DBConnect {
 
     private DBConnect() {
         connect();
-        spaceCount = 1;
-       // loadTable();
+        spaceCount = 0;
+    }
+
+    public int getSpaceCount() {
+        String countQuery = "SELECT COUNT(*) FROM space";
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement(countQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println(resultSet);
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public static DBConnect getInstance() {
@@ -71,7 +82,7 @@ public class DBConnect {
             preparedStatement.setString(2,"-");
             preparedStatement.executeUpdate();
             System.out.println("New space added");
-            spaceCount++;
+            //spaceCount++;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -90,7 +101,7 @@ public class DBConnect {
             int affectedRows = preparedStatement.executeUpdate();
             if (affectedRows > 0) {
                 System.out.println("Space " + choice + " deleted");
-                spaceCount--;
+                //spaceCount--;
             } else {
                 System.out.println("This space does not exist.");
             }
