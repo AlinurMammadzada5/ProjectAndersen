@@ -30,10 +30,12 @@ public class DBConnect {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(countQuery);
             ResultSet resultSet = preparedStatement.executeQuery();
+            spaceCount = resultSet.getInt(1);
             System.out.println(resultSet);
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+              return spaceCount;
 
     }
 
