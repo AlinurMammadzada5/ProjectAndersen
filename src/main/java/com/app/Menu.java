@@ -1,9 +1,6 @@
 package com.app;
 
 import java.util.InputMismatchException;
-//interface MenuShow{
-//    void showMenu();
-//}
 public class Menu {
 
      public void showMenu() {
@@ -41,7 +38,7 @@ public class Menu {
 
             }
             case 3: {
-                DB.getInstance().spaceSaver();
+
                 System.exit(0);
                 break;
             }
