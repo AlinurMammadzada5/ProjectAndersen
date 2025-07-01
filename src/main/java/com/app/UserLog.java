@@ -3,7 +3,7 @@ package com.app;
 public class UserLog {
     String username;
     Boolean userLogged;
-    DB db =DB.getInstance();
+    DBConnect dbc = DBConnect.getInstance();
 
 
 
@@ -42,14 +42,14 @@ public class UserLog {
 
         switch (choice) {
             case 1:{
-                db.printAvailableTables();
+                dbc.printAvailableTables();
                 break;
             }
             case 2:{
                 System.out.print("Enter the Table ID : ");
                 int reserveChoice = ScannerGet.scanner.nextInt();
-                  try {
-                      db.reserveSpace(reserveChoice,username);
+                try {
+                      dbc.reserveSpace(reserveChoice,username);
                   } catch (NotExistedTableException e) {
                       System.out.println(e.getMessage());
                   }
@@ -57,16 +57,16 @@ public class UserLog {
                 break;
             }
             case 3:{
-                db.myReservedSpace(username);
+                dbc.myReservedSpace(username);
                 break;
             }
             case 4:{
                 System.out.println("Enter the Canceling Table ID : ");
                 int cancelChoice = ScannerGet.scanner.nextInt();
-                db.cancelReservedSpace(username,cancelChoice);
+                dbc.cancelReservation(cancelChoice,username);
                 break;
             }
-            case 5: DB.getInstance().spaceSaver();break;
+            case 5: break;
             default:{
                 System.out.println("Invalid Option");
                 break;

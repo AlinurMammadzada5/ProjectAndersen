@@ -2,7 +2,8 @@ package com.app;
 
 public class AdminLog {
 
-DB db =DB.getInstance();
+
+DBConnect dbc = DBConnect.getInstance();
     void adminLogin(){
         System.out.println("Admin Login Successful...");
         int choice=0;
@@ -19,13 +20,13 @@ DB db =DB.getInstance();
     public void getAnswer(int choice) {
 
         switch (choice) {
-            case 1:db.addSpace();
+            case 1:dbc.addSpace();
             break;
-            case 2:db.deleteSpace();
+            case 2:dbc.deleteSpace();
             break;
-            case 3:db.printTable();
+            case 3:dbc.printTable();
             break;
-            case 4: DB.getInstance().spaceSaver(); break;
+            case 4: break;
             default:System.out.println("Invalid Choice");
             break;
         }
