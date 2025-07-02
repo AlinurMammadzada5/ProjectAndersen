@@ -1,9 +1,12 @@
 package com.app;
 
+
+
 public class AdminLog {
 
 
-DBConnect dbc = DBConnect.getInstance();
+//DBConnect dbc = DBConnect.getInstance();
+private final SpacesOperation so= SpacesOperation.getInstance();
     void adminLogin(){
         System.out.println("Admin Login Successful...");
         int choice=0;
@@ -20,13 +23,18 @@ DBConnect dbc = DBConnect.getInstance();
     public void getAnswer(int choice) {
 
         switch (choice) {
-            case 1:dbc.addSpace();
+            case 1:so.addSpace();
             break;
-            case 2:dbc.deleteSpace();
-            break;
-            case 3:dbc.printTable();
-            break;
-            case 4: break;
+            case 2: System.out.print("Enter space number to delete: ");
+                int id = ScannerGet.scanner.nextInt();
+                so.deleteSpace(id);
+                System.out.println("Space deleted if it existed.");
+                break;
+
+            case 3:
+               so.getAllSpaces();
+                break;
+            case 4: so.em.close(); break;
             default:System.out.println("Invalid Choice");
             break;
         }

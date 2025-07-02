@@ -3,8 +3,7 @@ package com.app;
 public class UserLog {
     String username;
     Boolean userLogged;
-    DBConnect dbc = DBConnect.getInstance();
-
+private final SpacesOperation so= SpacesOperation.getInstance();
 
 
     void userLogin() throws EmptyNameException, NotExistedTableException {
@@ -42,28 +41,24 @@ public class UserLog {
 
         switch (choice) {
             case 1:{
-                dbc.printAvailableTables();
+                so.getAvailableSpaces();
                 break;
             }
             case 2:{
                 System.out.print("Enter the Table ID : ");
                 int reserveChoice = ScannerGet.scanner.nextInt();
-                try {
-                      dbc.reserveSpace(reserveChoice,username);
-                  } catch (NotExistedTableException e) {
-                      System.out.println(e.getMessage());
-                  }
+                so.reserveSpace(reserveChoice,username);
 
                 break;
             }
             case 3:{
-                dbc.myReservedSpace(username);
+                so.myReservedSpaces(username);
                 break;
             }
             case 4:{
                 System.out.println("Enter the Canceling Table ID : ");
                 int cancelChoice = ScannerGet.scanner.nextInt();
-                dbc.cancelReservation(cancelChoice,username);
+                so.cancelReservation(cancelChoice,username);
                 break;
             }
             case 5: break;
