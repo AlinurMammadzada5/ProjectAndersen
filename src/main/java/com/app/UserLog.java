@@ -28,7 +28,7 @@ private final SpacesOperation so= SpacesOperation.getInstance();
 
 
 
-        int choice=0;
+            int choice=0;
             while (choice!=5) {
             System.out.println("Options : 1 - Browse The Spaces  /  2 - Make a Reservation  /  3 - View My Reservation  /   4 - Cancel Reservation  /  5 - Exit");
             System.out.print("Your Choice :  ");

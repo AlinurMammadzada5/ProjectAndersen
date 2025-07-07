@@ -5,7 +5,6 @@ package com.app;
 public class AdminLog {
 
 
-//DBConnect dbc = DBConnect.getInstance();
 private final SpacesOperation so= SpacesOperation.getInstance();
     void adminLogin(){
         System.out.println("Admin Login Successful...");
@@ -34,7 +33,7 @@ private final SpacesOperation so= SpacesOperation.getInstance();
             case 3:
                so.getAllSpaces();
                 break;
-            case 4: so.em.close(); break;
+            case 4: break;
             default:System.out.println("Invalid Choice");
             break;
         }
