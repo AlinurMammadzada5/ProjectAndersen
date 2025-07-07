@@ -1,8 +1,11 @@
 package com.app;
 
+
+
 public class AdminLog {
 
-DB db =DB.getInstance();
+
+private final SpacesOperation so= SpacesOperation.getInstance();
     void adminLogin(){
         System.out.println("Admin Login Successful...");
         int choice=0;
@@ -19,13 +22,18 @@ DB db =DB.getInstance();
     public void getAnswer(int choice) {
 
         switch (choice) {
-            case 1:db.addSpace();
+            case 1:so.addSpace();
             break;
-            case 2:db.deleteSpace();
-            break;
-            case 3:db.printTable();
-            break;
-            case 4: DB.getInstance().spaceSaver(); break;
+            case 2: System.out.print("Enter space number to delete: ");
+                int id = ScannerGet.scanner.nextInt();
+                so.deleteSpace(id);
+                System.out.println("Space deleted if it existed.");
+                break;
+
+            case 3:
+               so.getAllSpaces();
+                break;
+            case 4: break;
             default:System.out.println("Invalid Choice");
             break;
         }
