@@ -1,4 +1,4 @@
-package com.app;
+package com.app.Exceptions;
 
 public class EmptyNameException extends Exception {
     public EmptyNameException(String message) {

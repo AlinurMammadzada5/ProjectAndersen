@@ -1,6 +1,8 @@
-package com.app;
+package com.app.ConsoleUI;
 
 
+import com.app.Scanner.ScannerGet;
+import com.app.Database.SpacesOperation;
 
 public class AdminLog {
 

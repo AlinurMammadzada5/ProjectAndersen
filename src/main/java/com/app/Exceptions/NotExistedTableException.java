@@ -1,4 +1,4 @@
-package com.app;
+package com.app.Exceptions;
 
 public class NotExistedTableException extends Exception {
     public NotExistedTableException(String message) {

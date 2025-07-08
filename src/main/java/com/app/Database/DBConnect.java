@@ -1,4 +1,7 @@
-package com.app;
+package com.app.Database;
+
+import com.app.Exceptions.NotExistedTableException;
+import com.app.Scanner.ScannerGet;
 
 import java.sql.*;
 

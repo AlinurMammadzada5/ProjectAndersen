@@ -1,4 +1,8 @@
-package com.app;
+package com.app.ConsoleUI;
+
+import com.app.Exceptions.EmptyNameException;
+import com.app.Exceptions.NotExistedTableException;
+import com.app.Scanner.ScannerGet;
 
 import java.util.InputMismatchException;
 public class Menu {
