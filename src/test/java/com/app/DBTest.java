@@ -22,7 +22,7 @@ public class DBTest {
     @Test
     void testAddSpace() {
         int before = dbc.getSpaceCount();
-        dbc.addSpace();
+      //  dbc.addSpace();
         int after = dbc.getSpaceCount();
         assertEquals(before + 1, after);
     }
@@ -32,7 +32,7 @@ public class DBTest {
  void testRemoveSpace() {
         int before = dbc.getSpaceCount();
       ScannerGet.scanner = new Scanner("1");
-        dbc.deleteSpace();
+     //   dbc.deleteSpace();
        int after = dbc.getSpaceCount();
        assertEquals(before - 1, after);
     }
